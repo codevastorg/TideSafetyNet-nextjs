@@ -1,10 +1,12 @@
 import React from "react";
-import Navbar from "@/layout/Navbar"; // Assuming your Navbar component is in the "@/layout" directory
+import Navbar from "@/layout/Navbar";
+import HeroSection from "@/components/landing/Hero";
 
 const Home = () => {
   return (
     <div>
       <Navbar />
+      <HeroSection />
       <div className="container d-flex justify-content-center align-items-center vh-100">
         <div className="text-center">
           <h1 className="display-4 mb-4">
