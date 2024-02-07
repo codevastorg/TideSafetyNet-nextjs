@@ -7,7 +7,7 @@ import Footer from './Footer';
 const Layout = ({ children, includeNavbar = true, includeFooter = true }) => {
   return (
     <div>
-      {/* {includeNavbar && <Navbar />} */}
+      {includeNavbar && <Navbar />}
       {children}
       {includeFooter && <Footer />}
     </div>
