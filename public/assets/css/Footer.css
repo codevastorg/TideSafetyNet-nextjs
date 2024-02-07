@@ -1,0 +1,20 @@
+.footer-container {
+    position: relative;
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 1)), url('../imgs/footer.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 350px; /* Adjust the height as needed */
+  }
+  
+  .footer-content {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  
+  .infos {
+    color: #150a70; /* Change text color to your preference */
+  }
+  
