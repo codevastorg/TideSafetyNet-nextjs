@@ -2,7 +2,8 @@ import Link from 'next/link';
 
 const HeroSection = () => (
   <section className="hero-section">
-    <header>
+    <header className='header'>
+      <div className='overlay'></div>
       <h1>Welcome to TideSafetyNet</h1>
       <p>Real-time quality controlled sea level data is available for free.</p>
       <nav>
