@@ -24,7 +24,7 @@ const Footer = () => {
             <a href="https://twitter.com/startups44r0n" target="_blank" rel="noopener noreferrer" style={{ marginRight: '10px' }}>
               <i className="bi bi-twitter-x"></i>
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+            <a href="https://instagram.com/startups44r0n" target="_blank" rel="noopener noreferrer">
               <i className="bi bi-instagram"></i>
             </a>
           </div>
