@@ -3,7 +3,7 @@ import React from "react";
 import signUp from "@/firebase/auth/signup";
 import { useRouter } from 'next/navigation'
 
-function Page() {
+const Register = () => {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const router = useRouter()
@@ -19,7 +19,7 @@ function Page() {
 
         // else successful
         console.log(result)
-        return router.push("/admin")
+        return router.push("/auth/signin")
     }
     return (<div className="wrapper">
         <div className="form-wrapper">
@@ -39,4 +39,4 @@ function Page() {
     </div>);
 }
 
-export default Page;
+export default Register;
