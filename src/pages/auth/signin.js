@@ -3,7 +3,7 @@ import React from "react";
 import signIn from "@/firebase/auth/signin";
 import { useRouter } from 'next/navigation'
 
-function Page() {
+const Login = () => {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
     const router = useRouter()
@@ -40,4 +40,4 @@ function Page() {
     </div>);
 }
 
-export default Page;
+export default Login;
