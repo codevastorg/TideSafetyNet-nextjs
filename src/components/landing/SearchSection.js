@@ -7,9 +7,15 @@ import 'react-time-picker/dist/TimePicker.css';
 const SearchSection = () => {
   const [trial, setTrial] = useState(5); // Initial number of trials
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState('00:00');
+  const [selectedTime, setSelectedTime] = useState('12:00');
   const [selectedCity, setSelectedCity] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
+  const handleHourChange = time => {
+    // Extracting only the hours part and appending ':00' for minutes
+    const modifiedTime = time.split(':')[0] + ':00';
+    setSelectedTime(modifiedTime);
+  };
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -58,11 +64,16 @@ const SearchSection = () => {
                       />
                     </td>
                     <td>
-                      <TimePicker
-                        value={selectedTime}
-                        onChange={time => setSelectedTime(time)}
-                        className="form-control"
-                      />
+                      <div className="custom-time-picker-container">
+                        <TimePicker
+                          value={selectedTime}
+                          onChange={handleHourChange}
+                          className="form-control"
+                          clearIcon={null} // Hiding the clear icon since minutes are always '00'
+                          format="HH:mm" // Display and select time in 24-hour format
+                        />
+                        <div className="tooltip">Choose hours</div>
+                      </div>
                     </td>
                     <td>
                       <select
