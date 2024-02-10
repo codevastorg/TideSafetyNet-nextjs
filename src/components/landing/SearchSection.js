@@ -17,10 +17,14 @@ const SearchSection = () => (
             </tr>
           </thead>
           <tbody>
-            {/* Table rows will go here */}
+            <td>12</td>
+            <td>13</td>
+            <td>Mombasa</td>
+            <td>
+              <button className='btn btn-primary'>Search</button>
+            </td>
           </tbody>
         </table>
-        <button className="btn btn-primary">Search</button>
       </div>
     </div>
   </section>
