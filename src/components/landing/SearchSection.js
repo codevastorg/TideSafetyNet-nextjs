@@ -12,9 +12,15 @@ const SearchSection = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const handleHourChange = time => {
-    // Extracting only the hours part and appending ':00' for minutes
-    const modifiedTime = time.split(':')[0] + ':00';
-    setSelectedTime(modifiedTime);
+    // Check if time is non-empty
+    if (time) {
+      // Extracting only the hours part and appending ':00' for minutes
+      const modifiedTime = time.split(':')[0] + ':00';
+      setSelectedTime(modifiedTime);
+    } else {
+      // Handle case when time is empty (e.g., user deletes everything)
+      setSelectedTime('00:00'); // Set the time to a default value or handle it according to your requirements
+    }
   };
 
   const handleSearch = (event) => {
