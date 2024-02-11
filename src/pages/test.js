@@ -3,18 +3,18 @@ import { firebase_database } from '../firebase/config';
 import { useEffect, useState } from 'react';
 
 export default function Test() {
-    const [users, setUsers] = useState([]);
+    const [records, setRecords] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const snapshot = await get(ref(firebase_database, 'users'));
+            const snapshot = await get(ref(firebase_database, 'records'));
             if (snapshot.exists()) {
-                const usersData = snapshot.val();
-                const usersArray = Object.keys(usersData).map(key => ({
+                const recordsData = snapshot.val();
+                const recordsArray = Object.keys(recordsData).map(key => ({
                     id: key,
-                    ...usersData[key]
+                    ...recordsData[key]
                 }));
-                setUsers(usersArray);
+                setRecords(recordsArray);
             }
         };
         fetchData();
@@ -22,14 +22,16 @@ export default function Test() {
 
     return (
         <div>
-            <h1>Users</h1>
+            <h1>Records</h1>
             <ul>
-                {users.map(user => (
-                    <li key={user.id}>
-                        <p>Name: {user.name}</p>
-                        <p>Email: {user.email}</p>
-                        <p>Age: {user.age}</p>
-                        <p>Created At: {user.createdAt}</p>
+                {records.map(record => (
+                    <li key={record.id}>
+                        <p>Date: {record.date}</p>
+                        <p>City: {record.city}</p>
+                        <p>Hours: {record.hours}</p>
+                        <p>Value: {record.value}</p>
+                        <p>Weather: {record.weather}</p>
+                        <p>Wind: {record.wind}</p>
                     </li>
                 ))}
             </ul>
