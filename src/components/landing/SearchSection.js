@@ -10,6 +10,7 @@ const SearchSection = () => {
   const [selectedTime, setSelectedTime] = useState('12:00');
   const [selectedCity, setSelectedCity] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [showResults, setShowResults] = useState(false);
 
   const handleHourChange = time => {
     // Extracting only the hours part and appending ':00' for minutes
@@ -22,6 +23,20 @@ const SearchSection = () => {
     // Decrease trial count when user searches records
     setTrial(prevTrial => prevTrial - 1);
     // Implement search logic here
+    // Dummy search results for demonstration
+    const dummyResults = [
+      { date: '2024-02-10', time: '09:00', city: 'Mombasa', height: 5, wind: 10, weather: 'Sunny' },
+      { date: '2024-02-10', time: '10:00', city: 'Malindi', height: 6, wind: 15, weather: 'Cloudy' },
+      { date: '2024-02-10', time: '11:00', city: 'Kilifi', height: 7, wind: 20, weather: 'Rainy' },
+    ];
+    // Filter results based on selected date, time, and city
+    const filteredResults = dummyResults.filter(result => 
+      result.date === selectedDate.toISOString().split('T')[0] &&
+      result.time === selectedTime &&
+      result.city === selectedCity
+    );
+    setSearchResults(filteredResults);
+    setShowResults(true);
   };
 
   return (
@@ -83,9 +98,9 @@ const SearchSection = () => {
                         className="form-select"
                       >
                         <option value="">Choose City</option>
-                        <option value="mombasa">Mombasa</option>
-                        <option value="malindi">Malindi</option>
-                        <option value="kilifi">Kilifi</option>
+                        <option value="Mombasa">Mombasa</option>
+                        <option value="Malindi">Malindi</option>
+                        <option value="Kilifi">Kilifi</option>
                       </select>
                     </td>
                     <td>
@@ -98,9 +113,39 @@ const SearchSection = () => {
           </div>
         </form>
       </div>
-      <div className="col-md-10 m-auto">
-        {/* Hoverable Table rows */}
-      </div>
+      {showResults && (
+        <div className="mb-5">
+          <div className="card">
+            <h5 className="card-header text-dark text-center">Search Results</h5>
+            <div className="table-responsive text-nowrap">
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Hours</th>
+                    <th>City</th>
+                    <th>Height (Meters)</th>
+                    <th>Wind (km/h)</th>
+                    <th>Weather</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {searchResults.map((result, index) => (
+                    <tr key={index}>
+                      <td>{result.date}</td>
+                      <td>{result.time}</td>
+                      <td>{result.city}</td>
+                      <td>{result.height}</td>
+                      <td>{result.wind}</td>
+                      <td>{result.weather}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
