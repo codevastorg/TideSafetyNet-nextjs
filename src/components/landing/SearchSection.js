@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import TimePicker from 'react-time-picker';
-import 'react-time-picker/dist/TimePicker.css';
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
+import { useRouter } from "next/router";
 
 const SearchSection = () => {
   const [trial, setTrial] = useState(5); // Initial number of trials
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedTime, setSelectedTime] = useState('12:00');
-  const [selectedCity, setSelectedCity] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
+  const [selectedTime, setSelectedTime] = useState("12:00");
+  const [selectedCity, setSelectedCity] = useState("");
+  const router = useRouter();
 
   const handleHourChange = time => {
     // Check if time is non-empty
@@ -25,9 +26,20 @@ const SearchSection = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    // Decrease trial count when user searches records
-    setTrial(prevTrial => prevTrial - 1);
-    // Implement search logic here
+    if (trial > 0) {
+      setTrial(trial - 1); // Decrease trial by 1
+      router.push({
+        pathname: "/results",
+        query: {
+          date: selectedDate.toISOString().split("T")[0],
+          time: selectedTime,
+          city: selectedCity,
+        },
+      });
+    } else {
+      alert("You have no trials left. Please contact support for more trials.");
+      // Optionally, prevent the form submission or navigation
+    }
   };
 
   return (
@@ -35,14 +47,13 @@ const SearchSection = () => {
       {trial < 1 ? (
         <div className="alert alert-danger">
           <p className="text-center m-auto">
-            You have 0 trials left, contact Startups for premiumship via tel: +254 711 847 597
+            You have 0 trials left, contact Startups for premiumship via tel:
+            +254 711 847 597
           </p>
         </div>
       ) : (
         <div className="alert alert-primary">
-          <p className="text-center m-auto">
-            You have {trial} trials left!
-          </p>
+          <p className="text-center m-auto">You have {trial} trials left!</p>
         </div>
       )}
       <div className="mb-5">
@@ -64,7 +75,7 @@ const SearchSection = () => {
                     <td>
                       <DatePicker
                         selected={selectedDate}
-                        onChange={date => setSelectedDate(date)}
+                        onChange={(date) => setSelectedDate(date)}
                         dateFormat="yyyy-MM-dd"
                         className="form-control"
                       />
@@ -85,17 +96,24 @@ const SearchSection = () => {
                       <select
                         name="city"
                         value={selectedCity}
-                        onChange={event => setSelectedCity(event.target.value)}
+                        onChange={(event) =>
+                          setSelectedCity(event.target.value)
+                        }
                         className="form-select"
                       >
                         <option value="">Choose City</option>
-                        <option value="mombasa">Mombasa</option>
-                        <option value="malindi">Malindi</option>
-                        <option value="kilifi">Kilifi</option>
+                        <option value="Mombasa">Mombasa</option>
+                        <option value="Malindi">Malindi</option>
+                        <option value="Kilifi">Kilifi</option>
                       </select>
                     </td>
                     <td>
-                      <input type="submit" name="search" value="Search" className="btn btn-success" />
+                      <input
+                        type="submit"
+                        name="search"
+                        value="Search"
+                        className="btn btn-success"
+                      />
                     </td>
                   </tr>
                 </tbody>
@@ -103,9 +121,6 @@ const SearchSection = () => {
             </div>
           </div>
         </form>
-      </div>
-      <div className="col-md-10 m-auto">
-        {/* Hoverable Table rows */}
       </div>
     </div>
   );
