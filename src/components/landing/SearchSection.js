@@ -12,10 +12,16 @@ const SearchSection = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const router = useRouter();
 
-  const handleHourChange = (time) => {
-    // Extracting only the hours part and appending ':00' for minutes
-    const modifiedTime = time.split(":")[0] + ":00";
-    setSelectedTime(modifiedTime);
+  const handleHourChange = time => {
+    // Check if time is non-empty
+    if (time) {
+      // Extracting only the hours part and appending ':00' for minutes
+      const modifiedTime = time.split(':')[0] + ':00';
+      setSelectedTime(modifiedTime);
+    } else {
+      // Handle case when time is empty (e.g., user deletes everything)
+      setSelectedTime('00:00'); // Set the time to a default value or handle it according to your requirements
+    }
   };
 
   const handleSearch = (event) => {
