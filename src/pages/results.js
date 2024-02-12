@@ -62,40 +62,58 @@ const ResultsPage = () => {
     }
   };
 
+  function goBack() {
+    history.go(-1);
+  }
+
   return (
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-md-10">
-          <div className="mb-5">
-            <div className="card">
-              <h5 className="card-header text-dark text-center">Search Results</h5>
-              <div className="table-responsive text-nowrap">
-                <table className="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>Date</th>
-                      <th>Time</th>
-                      <th>City</th>
-                      <th>Height (Meters)</th>
-                      <th>Wind (km/h)</th>
-                      <th>Weather</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {searchResults.map((result, index) => (
-                      <tr key={index}>
-                        <td>{result.date}</td>
-                        <td>{result.time}</td>
-                        <td>{result.city}</td>
-                        <td>{result.height}</td>
-                        <td>{result.wind}</td>
-                        <td>{result.weather}</td>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      backgroundSize: 'cover',
+      backgroundImage: 'url("/wave.jpeg")'
+    }}>
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-10">
+            <div className="mb-5">
+              <div className="card">
+                <h5 className="card-header text-dark text-center">Search Results</h5>
+                <div className="table-responsive text-nowrap">
+                  <table className="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>City</th>
+                        <th>Height (Meters)</th>
+                        <th>Wind (km/h)</th>
+                        <th>Weather</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {searchResults.map((result, index) => (
+                        <tr key={index}>
+                          <td>{result.date}</td>
+                          <td>{result.time}</td>
+                          <td>{result.city}</td>
+                          <td>{result.height}</td>
+                          <td>{result.wind}</td>
+                          <td>{result.weather}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {advice && <div className="alert alert-info mb-3 text-center">{advice}</div>}
+                <div className="text-center">
+                  <button onClick={goBack} className="btn btn-primary mb-3">
+                    Back Home
+                  </button>
+                </div>
               </div>
-              {advice && <div className="alert alert-info mt-4">{advice}</div>}
             </div>
           </div>
         </div>
