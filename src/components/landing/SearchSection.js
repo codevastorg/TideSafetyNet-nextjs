@@ -111,63 +111,6 @@ const SearchSection = () => {
                   </div>
                 </div>
               </div>
-              {/* <table className="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Hours</th>
-                    <th>City</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody className="table-border-bottom-0">
-                  <tr>
-                    <td>
-                      <DatePicker
-                        selected={selectedDate}
-                        onChange={(date) => setSelectedDate(date)}
-                        dateFormat="yyyy-MM-dd"
-                        className="form-control"
-                      />
-                    </td>
-                    <td>
-                      <div className="custom-time-picker-container">
-                        <TimePicker
-                          value={selectedTime}
-                          onChange={handleHourChange}
-                          className="form-control"
-                          clearIcon={null} // Hiding the clear icon since minutes are always '00'
-                          format="HH:mm" // Display and select time in 24-hour format
-                        />
-                        <div className="tooltip">Choose hours</div>
-                      </div>
-                    </td>
-                    <td>
-                      <select
-                        name="city"
-                        value={selectedCity}
-                        onChange={(event) =>
-                          setSelectedCity(event.target.value)
-                        }
-                        className="form-select"
-                      >
-                        <option value="">Choose City</option>
-                        <option value="Mombasa">Mombasa</option>
-                        <option value="Malindi">Malindi</option>
-                        <option value="Kilifi">Kilifi</option>
-                      </select>
-                    </td>
-                    <td>
-                      <input
-                        type="submit"
-                        name="search"
-                        value="Search"
-                        className="btn btn-success"
-                      />
-                    </td>
-                  </tr>
-                </tbody>
-              </table> */}
             </div>
           </div>
         </form>
