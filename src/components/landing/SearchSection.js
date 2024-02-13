@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import TimePicker from "react-time-picker";
-import "react-time-picker/dist/TimePicker.css";
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+// import "react-time-picker/dist/TimePicker.css";
 import { useRouter } from "next/router";
 
 const SearchSection = () => {
@@ -12,17 +14,20 @@ const SearchSection = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const router = useRouter();
 
-  const handleHourChange = time => {
-    // Check if time is non-empty
+  const handleHourChange = (time) => {
+    // Check if time is non-null
     if (time) {
+      // Format the Dayjs object to a string with format 'HH:mm'
+      const timeString = time.format('HH:mm');
       // Extracting only the hours part and appending ':00' for minutes
-      const modifiedTime = time.split(':')[0] + ':00';
+      const modifiedTime = timeString.split(':')[0] + ':00';
       setSelectedTime(modifiedTime);
     } else {
-      // Handle case when time is empty (e.g., user deletes everything)
+      // Handle case when time is null (e.g., user deletes everything)
       setSelectedTime('00:00'); // Set the time to a default value or handle it according to your requirements
     }
   };
+
 
   const handleSearch = (event) => {
     event.preventDefault();
@@ -63,29 +68,33 @@ const SearchSection = () => {
             <div className="text-nowrap">
               <div className="card-body text-center p-auto">
                 <div className="row">
-                  <div className="col-md-2 mb-2">Date</div>
+                  <div className="col-md-2 my-auto">Date</div>
                   <div className="col-md-10 mb-2">
                     <DatePicker
-                    wrapperClassName="datePicker"
+                      wrapperClassName="datePicker"
                       selected={selectedDate}
                       onChange={(date) => setSelectedDate(date)}
                       dateFormat="yyyy-MM-dd"
-                      className="form-control mx-auto"
+                      className="form-control mx-auto timh"
                     />
                     <div className="tooltip">Choose hours</div>
                   </div>
-                  <div className="col-md-2 mb-2">Hours</div>
+                  <div className="col-md-2 my-auto">Hours</div>
                   <div className="col-md-10 mb-2">
-                    <TimePicker
-                      value={selectedTime}
-                      onChange={handleHourChange}
-                      className="form-control w-75 mx-auto"
-                      clearIcon={null} // Hiding the clear icon since minutes are always '00'
-                      format="HH:mm" // Display and select time in 24-hour format
-                    />
-                    <div className="tooltip">Choose hours</div>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <TimePicker
+                        views={['hours', 'minutes']}
+                        value={selectedTime}
+                        onChange={handleHourChange}
+                        className="form-control w-75 p-0 mx-auto"
+                        clearIcon={null} // Hiding the clear icon since minutes are always '00'
+                        format="HH:mm" // Display and select time in 24-hour format
+                        ampm={false}
+                      />
+                    </LocalizationProvider>
+                    {/* <div className="tooltip">Choose hours</div> */}
                   </div>
-                  <div className="col-md-2 mb-2">City</div>
+                  <div className="col-md-2 my-auto">City</div>
                   <div className="col-md-10 mb-2">
                     <select
                       name="city"
@@ -93,7 +102,7 @@ const SearchSection = () => {
                       onChange={(event) =>
                         setSelectedCity(event.target.value)
                       }
-                      className="form-select w-75 mx-auto"
+                      className="form-select w-75 mx-auto timh"
                     >
                       <option value="">Choose City</option>  {/* Just in case a user fails to choose a city, Mombasa is taken as the default value */}
                       <option value="Mombasa">Mombasa</option>
