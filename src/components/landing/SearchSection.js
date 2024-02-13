@@ -56,12 +56,62 @@ const SearchSection = () => {
           <p className="text-center m-auto">You have {trial} trials left!</p>
         </div>
       )}
-      <div className="mb-5" id="search">
+      <div className="mb-5 container" id="search">
         <form onSubmit={handleSearch}>
           <div className="card">
             <h5 className="card-header text-dark text-center">Search Records</h5>
-            <div className="table-responsive text-nowrap">
-              <table className="table table-hover">
+            <div className="text-nowrap">
+              <div className="card-body text-center p-auto">
+                <div className="row">
+                  <div className="col-md-2 mb-2">Date</div>
+                  <div className="col-md-10 mb-2">
+                    <DatePicker
+                    wrapperClassName="datePicker"
+                      selected={selectedDate}
+                      onChange={(date) => setSelectedDate(date)}
+                      dateFormat="yyyy-MM-dd"
+                      className="form-control mx-auto"
+                    />
+                    <div className="tooltip">Choose hours</div>
+                  </div>
+                  <div className="col-md-2 mb-2">Hours</div>
+                  <div className="col-md-10 mb-2">
+                    <TimePicker
+                      value={selectedTime}
+                      onChange={handleHourChange}
+                      className="form-control w-75 mx-auto"
+                      clearIcon={null} // Hiding the clear icon since minutes are always '00'
+                      format="HH:mm" // Display and select time in 24-hour format
+                    />
+                    <div className="tooltip">Choose hours</div>
+                  </div>
+                  <div className="col-md-2 mb-2">City</div>
+                  <div className="col-md-10 mb-2">
+                    <select
+                      name="city"
+                      value={selectedCity}
+                      onChange={(event) =>
+                        setSelectedCity(event.target.value)
+                      }
+                      className="form-select w-75 mx-auto"
+                    >
+                      <option value="">Choose City</option>  {/* Just in case a user fails to choose a city, Mombasa is taken as the default value */}
+                      <option value="Mombasa">Mombasa</option>
+                      <option value="Malindi">Malindi</option>
+                      <option value="Kilifi">Kilifi</option>
+                    </select>
+                  </div>
+                  <div className="col-md-12 mb-2">
+                    <input
+                      type="submit"
+                      name="search"
+                      value="Search"
+                      className="btn btn-success"
+                    />
+                  </div>
+                </div>
+              </div>
+              {/* <table className="table table-hover">
                 <thead>
                   <tr>
                     <th>Date</th>
@@ -117,7 +167,7 @@ const SearchSection = () => {
                     </td>
                   </tr>
                 </tbody>
-              </table>
+              </table> */}
             </div>
           </div>
         </form>
