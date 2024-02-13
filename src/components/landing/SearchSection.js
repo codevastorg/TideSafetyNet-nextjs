@@ -56,10 +56,10 @@ const SearchSection = () => {
           <p className="text-center m-auto">You have {trial} trials left!</p>
         </div>
       )}
-      <div className="mb-5">
+      <div className="mb-5" id="search">
         <form onSubmit={handleSearch}>
           <div className="card">
-            <h5 className="card-header text-dark">Search Records</h5>
+            <h5 className="card-header text-dark text-center">Search Records</h5>
             <div className="table-responsive text-nowrap">
               <table className="table table-hover">
                 <thead>
