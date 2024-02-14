@@ -34,7 +34,7 @@ const Homepage = () => {
           </div>
 
           <div className="text-center mb-5">
-            <Link href="/page-careers" passHref legacyBehavior>
+            <Link href="/auth/signin" passHref legacyBehavior>
               <a
                 className="btn btn-outline-primary"
                 style={{
