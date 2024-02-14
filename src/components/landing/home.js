@@ -26,8 +26,10 @@ const Homepage = () => {
                 </h2>
                 <p className="lead">
                   <strong>We warn fishermen</strong> about high or low tides,
+                  <strong>assist surfers</strong> in identifying the best days to surf,
                   and <strong>assist swimmers</strong> in identifying safe days
-                  for swimming, effectively<br></br> <strong>reducing the risks of accidents.</strong>{" "}
+                  for swimming, effectively<br></br> <strong>reducing the risks of accidents. <br></br></strong>
+                  Our data can also predict an <strong>incoming Tsunami.</strong>{" "}
                 </p>
               </div>
             </div>
