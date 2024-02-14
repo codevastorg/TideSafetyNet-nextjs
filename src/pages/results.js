@@ -50,18 +50,48 @@ const ResultsPage = () => {
 
   const generateAdvice = (results) => {
     if (results.length > 0) {
-      const weatherConditions = results.map((result) => result.weather);
-      if (weatherConditions.includes("Rainy")) {
-        setAdvice("It looks like rain is expected. Don’t forget to bring an umbrella!");
-      } else if (weatherConditions.includes("Sunny")) {
-        setAdvice("The weather is sunny. It’s a great day for outdoor activities!");
-      } else {
-        setAdvice("The weather is varied. Make sure to check detailed forecasts before planning your day.");
-      }
+      let advice = "It's a great day for outdoor activities, but let's check the conditions.";
+
+      // Check each result and accumulate advice
+      results.forEach((result) => {
+        const { weather, wind, value } = result; // Destructure for easier access
+
+        // Weather condition advice
+        if (weather === "rainy") {
+          advice += " Rainy weather might not be ideal for swimming or surfing, but it could be good for fishing.";
+        } else if (weather === "sunny") {
+          advice += " Sunny weather is perfect for surfing and swimming, especially if the wind and tide conditions are favorable.";
+        } else if (weather === "cloudy") {
+          advice += " Cloudy weather is suitable for fishing and possibly for surfing if the wind and tide conditions are right.";
+        }
+
+        // Wind speed advice
+        const windSpeedValue = parseFloat(wind); // Ensure windSpeed is a number
+        if (windSpeedValue > 20) {
+          advice += " High wind speeds might make surfing challenging and fishing uncomfortable.";
+        } else if (windSpeedValue <= 20 && windSpeedValue >= 10) {
+          advice += " Moderate wind speeds could be good for surfing.";
+        }
+
+        // Tide height advice
+        const tideHeightValue = parseFloat(value); // Ensure tideHeight is a number
+        if (tideHeightValue < 0.5) {
+          advice += " Low tide might not be ideal for swimming or surfing.";
+        } else if (tideHeightValue >= 0.5 && tideHeightValue <= 2) {
+          advice += " Medium tide height is generally good for all activities.";
+        } else if (tideHeightValue > 2) {
+          advice += " High tide might offer great conditions for surfing, but be cautious while swimming.";
+        }
+      });
+
+      setAdvice(advice);
     } else {
       setAdvice("No results found for the selected criteria. Try adjusting your search parameters.");
     }
   };
+
+
+
 
   return (
     <div style={{
@@ -96,7 +126,7 @@ const ResultsPage = () => {
                     </div>
                   ))}
                 </div>
-                {advice && <div className="alert alert-info mb-3 text-center">{advice}</div>}
+                <div className="alert alert-info mb-3 text-center">{advice}</div>
                 <div className="text-center">
                   <Link className="btn btn-primary mb-3" href="/#search">Search Again</Link>
                 </div>
