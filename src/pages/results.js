@@ -98,7 +98,7 @@ const ResultsPage = () => {
                 </div>
                 {advice && <div className="alert alert-info mb-3 text-center">{advice}</div>}
                 <div className="text-center">
-                  <Link className="btn btn-primary mb-3" href="/#search">Search Again</Link>
+                  <Link className="btn btn-primary mb-3" href="/dashboard/homepage/#search">Search Again</Link>
                 </div>
               </div>
             </div>
