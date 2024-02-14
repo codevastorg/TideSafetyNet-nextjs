@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { get, ref } from "firebase/database";
 import { firebase_database } from "../firebase/config";
+import Link from "next/link";
 
 const ResultsPage = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -62,10 +63,6 @@ const ResultsPage = () => {
     }
   };
 
-  function goBack() {
-    history.go(-1);
-  }
-
   return (
     <div style={{
       display: 'flex',
@@ -99,37 +96,9 @@ const ResultsPage = () => {
                     </div>
                   ))}
                 </div>
-                {/* <div className="table-responsive text-nowrap">
-                  <table className="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>City</th>
-                        <th>Height (Meters)</th>
-                        <th>Wind (km/h)</th>
-                        <th>Weather</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {searchResults.map((result, index) => (
-                        <tr key={index}>
-                          <td>{result.date}</td>
-                          <td>{result.time}</td>
-                          <td>{result.city}</td>
-                          <td>{result.height}</td>
-                          <td>{result.wind}</td>
-                          <td>{result.weather}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div> */}
                 {advice && <div className="alert alert-info mb-3 text-center">{advice}</div>}
                 <div className="text-center">
-                  <button onClick={goBack} className="btn btn-primary mb-3">
-                    Back Home
-                  </button>
+                  <Link className="btn btn-primary mb-3" href="/#search">Search Again</Link>
                 </div>
               </div>
             </div>
