@@ -7,3 +7,11 @@
 .timh{
   height: 60px;
 }
+
+.rcorners2 {
+  border-radius: 25px;
+  border: 2px solid #17a2b8;
+  padding: 20px;
+  /* width: 75%; */
+  height: auto;
+}

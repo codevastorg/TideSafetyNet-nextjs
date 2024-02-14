@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { get, ref } from "firebase/database";
 import { firebase_database } from "../firebase/config";
+import Link from "next/link";
 
 const ResultsPage = () => {
   const [searchResults, setSearchResults] = useState([]);
@@ -62,10 +63,6 @@ const ResultsPage = () => {
     }
   };
 
-  function goBack() {
-    history.go(-1);
-  }
-
   return (
     <div style={{
       display: 'flex',
@@ -81,37 +78,27 @@ const ResultsPage = () => {
             <div className="mb-5">
               <div className="card">
                 <h5 className="card-header text-dark text-center">Search Results</h5>
-                <div className="table-responsive text-nowrap">
-                  <table className="table table-hover">
-                    <thead>
-                      <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>City</th>
-                        <th>Height (Meters)</th>
-                        <th>Wind (km/h)</th>
-                        <th>Weather</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {searchResults.map((result, index) => (
-                        <tr key={index}>
-                          <td>{result.date}</td>
-                          <td>{result.time}</td>
-                          <td>{result.city}</td>
-                          <td>{result.height}</td>
-                          <td>{result.wind}</td>
-                          <td>{result.weather}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                <div className="card-body">
+                  {searchResults.map((result, index) => (
+                    <div className="row text-center" key={index}>
+                      <div className="col-md-2 my-auto">Date</div>
+                      <div className="col-md-10 rcorners2 mb-2 w-75 mx-auto">{result.date}</div>
+                      <div className="col-md-2 my-auto">Time</div>
+                      <div className="col-md-10 rcorners2 mb-2 w-75 mx-auto">{result.time}</div>
+                      <div className="col-md-2 my-auto">City</div>
+                      <div className="col-md-10 rcorners2 mb-2 text-capitalize w-75 mx-auto">{result.city}</div>
+                      <div className="col-md-2 my-auto">Height (Meters)</div>
+                      <div className="col-md-10 rcorners2 mb-2 w-75 mx-auto">{result.height}</div>
+                      <div className="col-md-2 my-auto">Wind (km/h)</div>
+                      <div className="col-md-10 rcorners2 mb-2 w-75 mx-auto">{result.wind}</div>
+                      <div className="col-md-2 my-auto">Weather</div>
+                      <div className="col-md-10 rcorners2 mb-2 text-capitalize w-75 mx-auto">{result.weather}</div>
+                    </div>
+                  ))}
                 </div>
                 {advice && <div className="alert alert-info mb-3 text-center">{advice}</div>}
                 <div className="text-center">
-                  <button onClick={goBack} className="btn btn-primary mb-3">
-                    Back Home
-                  </button>
+                  <Link className="btn btn-primary mb-3" href="/#search">Search Again</Link>
                 </div>
               </div>
             </div>
