@@ -81,7 +81,25 @@ const ResultsPage = () => {
             <div className="mb-5">
               <div className="card">
                 <h5 className="card-header text-dark text-center">Search Results</h5>
-                <div className="table-responsive text-nowrap">
+                <div className="card-body">
+                  {searchResults.map((result, index) => (
+                    <div className="row text-center" key={index}>
+                      <div className="col-md-2 my-auto">Date</div>
+                      <div className="col-md-10 rcorners2 mb-2 w-75 mx-auto">{result.date}</div>
+                      <div className="col-md-2 my-auto">Time</div>
+                      <div className="col-md-10 rcorners2 mb-2 w-75 mx-auto">{result.time}</div>
+                      <div className="col-md-2 my-auto">City</div>
+                      <div className="col-md-10 rcorners2 mb-2 text-capitalize w-75 mx-auto">{result.city}</div>
+                      <div className="col-md-2 my-auto">Height (Meters)</div>
+                      <div className="col-md-10 rcorners2 mb-2 w-75 mx-auto">{result.height}</div>
+                      <div className="col-md-2 my-auto">Wind (km/h)</div>
+                      <div className="col-md-10 rcorners2 mb-2 w-75 mx-auto">{result.wind}</div>
+                      <div className="col-md-2 my-auto">Weather</div>
+                      <div className="col-md-10 rcorners2 mb-2 text-capitalize w-75 mx-auto">{result.weather}</div>
+                    </div>
+                  ))}
+                </div>
+                {/* <div className="table-responsive text-nowrap">
                   <table className="table table-hover">
                     <thead>
                       <tr>
@@ -106,7 +124,7 @@ const ResultsPage = () => {
                       ))}
                     </tbody>
                   </table>
-                </div>
+                </div> */}
                 {advice && <div className="alert alert-info mb-3 text-center">{advice}</div>}
                 <div className="text-center">
                   <button onClick={goBack} className="btn btn-primary mb-3">
