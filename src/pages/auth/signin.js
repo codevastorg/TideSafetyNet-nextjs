@@ -94,14 +94,14 @@ const Login = () => {
                         >
                           Sign In
                         </button>
-                        <Link href="/SignUp" style={{ textDecoration: "none" }}>
+                        <Link href="/auth/forgotpassword" >
                           Forgot Password
                         </Link>
                       </div>
 
                       <p>
                         Dont have an account?{" "}
-                        <Link href="/SignUp" style={{ textDecoration: "none" }}>
+                        <Link href="/auth/signup" style={{ textDecoration: "none" }}>
                           Register here
                         </Link>
                       </p>
