@@ -16,7 +16,7 @@ const HeroSection = () => {
         <h1>Welcome to TideSafetyNet</h1>
         <p>Real-time quality controlled sea level data is available.</p>
         <nav>
-          <Link href="/auth/logout" legacyBehavior>
+          <Link href="/auth/signin" legacyBehavior>
             <a className="button w-75 m-auto mb-2">
               <BsBoxArrowInLeft className="icon" />
               Logout
