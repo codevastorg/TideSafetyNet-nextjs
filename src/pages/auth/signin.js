@@ -61,6 +61,10 @@ const Login = () => {
 
                     <form onSubmit={handleLogin}>
                       <p>Please login to your account</p>
+                      <label className="mb-2">
+                        Email Address
+                        <span className="text-danger mb-9">*</span>
+                      </label>
                       <input
                         type="text"
                         id="email"
@@ -72,7 +76,7 @@ const Login = () => {
                       />
 
                       <div className="form-group mb-4">
-                        <label>
+                        <label className="mb-2">
                           Password
                           <span className="text-danger mb-9">*</span>
                         </label>
@@ -81,6 +85,7 @@ const Login = () => {
                           name="password"
                           className="form-control"
                           value={formData.password}
+                          placeholder="8+ characters required"
                           onChange={handleChange}
                           required
                         />
@@ -94,14 +99,15 @@ const Login = () => {
                         >
                           Sign In
                         </button>
-                        <Link href="/auth/forgotpassword" >
-                          Forgot Password
-                        </Link>
+                        <Link href="/auth/forgotpassword">Forgot Password</Link>
                       </div>
 
                       <p>
                         Dont have an account?{" "}
-                        <Link href="/auth/signup" style={{ textDecoration: "none" }}>
+                        <Link
+                          href="/auth/signup"
+                          style={{ textDecoration: "none" }}
+                        >
                           Register here
                         </Link>
                       </p>
