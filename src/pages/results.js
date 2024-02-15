@@ -106,7 +106,7 @@ const ResultsPage = () => {
         <div className="row justify-content-center">
           <div className="col-md-10">
             <div className="mb-5">
-              <div className="card">
+              <div className="card" style={{borderRadius: "20px"}}>
                 <h5 className="card-header text-dark text-center">Search Results</h5>
                 <div className="card-body">
                   {searchResults.map((result, index) => (

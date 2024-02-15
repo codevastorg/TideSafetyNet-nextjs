@@ -8,7 +8,7 @@ import { AuthContextProvider } from '@/context/AuthContext';
 const Layout = ({ children, includeNavbar = true, includeFooter = true }) => {
   return (
     <div>
-      {includeNavbar && <Navbar />}
+      {/* {includeNavbar && <Navbar />} */}
       {children}
       {includeFooter && <Footer />}
     </div>
