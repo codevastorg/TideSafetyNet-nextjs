@@ -5,7 +5,9 @@ import {
   BsPerson,
   BsDownload,
   BsSearch,
+  BsAlarm,
 } from "react-icons/bs";
+
 
 const HeroSection = () => {
   return (
@@ -33,8 +35,8 @@ const HeroSection = () => {
             </a>
           </Link>
 
-          <Link href="#search" legacyBehavior>
-            <a className="button w-75 m-auto">
+          <Link href="#search" className="text-center" legacyBehavior>
+            <a className="button w-75 m-auto mb-2">
               <BsSearch className="icon" />
               Search Tide Records
             </a>

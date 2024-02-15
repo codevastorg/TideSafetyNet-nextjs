@@ -11,7 +11,6 @@
 .rcorners2 {
   border-radius: 25px;
   border: 2px solid #17a2b8;
-  padding: 20px;
-  /* width: 75%; */
+  padding: 10px;
   height: auto;
 }
