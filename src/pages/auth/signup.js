@@ -14,6 +14,7 @@ const Register = () => {
 
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [warningMessage, setWarningMessage] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -21,6 +22,10 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.password !== formData.password2) {
+      setWarningMessage("Passwords do not match.");
+      return;
+    }
     try {
       const { result, error } = await signUp(formData.email, formData.password);
 
@@ -109,6 +114,7 @@ const Register = () => {
                           <input
                             type="email"
                             id="email"
+                            required
                             name="email"
                             className="form-control"
                             placeholder="example@gmail.com"
@@ -125,6 +131,7 @@ const Register = () => {
                           <input
                             type="password"
                             id="password"
+                            required
                             name="password"
                             className="form-control"
                             placeholder="8+ characters required"
@@ -142,11 +149,16 @@ const Register = () => {
                             type="password"
                             id="password2"
                             name="password2"
-                            className="form-control"
+                            className="form-control is-invalid mb-1"
                             placeholder="8+ characters required"
                             value={formData.password2}
                             onChange={handleChange}
                           />
+                          {warningMessage && (
+                            <div className="invalid-feedback">
+                              {warningMessage}
+                            </div>
+                          )}
                         </div>
 
                         <div className="form-check mb-4">
