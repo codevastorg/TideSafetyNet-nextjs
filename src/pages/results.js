@@ -90,9 +90,6 @@ const ResultsPage = () => {
     }
   };
 
-
-
-
   return (
     <div style={{
       display: 'flex',
