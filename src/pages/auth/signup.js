@@ -15,6 +15,7 @@ const Register = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [warningMessage, setWarningMessage] = useState("");
+  const [termsChecked, setTermsChecked] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -22,6 +23,11 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!termsChecked) {
+      // Check if terms are checked
+      setWarningMessage("Please agree to the Terms and Conditions.");
+      return;
+    }
     if (formData.password !== formData.password2) {
       setWarningMessage("Passwords do not match.");
       return;
@@ -55,6 +61,11 @@ const Register = () => {
         setErrorMessage("Signup failed. Please try again.");
       }
     }
+  };
+
+  const handleCheckboxChange = (e) => {
+    setTermsChecked(e.target.checked);
+    setWarningMessage("");
   };
 
   return (
@@ -167,6 +178,7 @@ const Register = () => {
                             type="checkbox"
                             value=""
                             id="termsCheckbox"
+                            onChange={handleCheckboxChange}
                           />
                           <label
                             className="form-check-label"
