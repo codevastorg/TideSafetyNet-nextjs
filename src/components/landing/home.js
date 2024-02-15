@@ -54,7 +54,7 @@ const Homepage = () => {
           <div className="position-relative mb-5">
             <Image
               src="/assets/imgs/info.webp"
-              alt="Ocean waves indicating high and low tides, assisting fishermen and swimmers"
+              alt="Ocean waves indicating high and low tides, assisting fishermen, surfers and swimmers"
               layout="responsive"
               width={1500}
               height={200}
