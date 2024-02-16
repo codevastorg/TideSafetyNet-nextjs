@@ -24,7 +24,7 @@ const HeroSection = () => {
               Logout
             </a>
           </Link>
-          <Link href="/userInfo" legacyBehavior>
+          <Link href="/profile" legacyBehavior>
             <a className="button w-75 m-auto mb-2">
               <BsPerson className="icon" />
               User Info
