@@ -9,11 +9,11 @@ const Footer = () => {
           <p className="infos">
             &copy; {new Date().getFullYear()}, Made by{" "}
             <a
-              href="https://thestartups.wuaze.com"
+              href="https://codevast.org/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              StartUps
+              Code Vast
             </a>
           </p>
           <div className="social-icons">
