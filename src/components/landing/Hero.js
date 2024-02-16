@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Navbar from "@/layout/Navbar";
 import {
   BsBoxArrowInLeft,
   BsPerson,
@@ -12,6 +13,7 @@ import {
 const HeroSection = () => {
   return (
     <section className="hero-section">
+      <Navbar />
       <header className="header">
         <h1>Welcome to TideSafetyNet</h1>
         <p>Real-time quality controlled sea level data is available.</p>
@@ -22,7 +24,7 @@ const HeroSection = () => {
               Logout
             </a>
           </Link>
-          <Link href="/userInfo" legacyBehavior>
+          <Link href="/profile" legacyBehavior>
             <a className="button w-75 m-auto mb-2">
               <BsPerson className="icon" />
               User Info
