@@ -1,5 +1,9 @@
 import React from "react";
 import Link from "next/link";
+import Navbar from "@/layout/Navbar";
+import { getAuth } from "firebase/auth";
+import { firebase_app } from "@/firebase/config";
+import { useRouter } from "next/router";
 import {
   BsBoxArrowInLeft,
   BsPerson,
@@ -8,21 +12,32 @@ import {
   BsAlarm,
 } from "react-icons/bs";
 
-
 const HeroSection = () => {
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    const auth = getAuth(firebase_app);
+
+    try {
+      await auth.signOut();
+      router.push("/");
+    } catch (error) {
+      console.error("Error signing out:", error);
+    }
+  };
+
   return (
     <section className="hero-section">
+      <Navbar />
       <header className="header">
         <h1>Welcome to TideSafetyNet</h1>
         <p>Real-time quality controlled sea level data is available.</p>
         <nav>
-          <Link href="/auth/signin" legacyBehavior>
-            <a className="button w-75 m-auto mb-2">
-              <BsBoxArrowInLeft className="icon" />
-              Logout
-            </a>
-          </Link>
-          <Link href="/userInfo" legacyBehavior>
+          <button onClick={handleSignOut} className="button w-75 m-auto mb-2" >
+            <BsBoxArrowInLeft className="icon" />
+            Logout
+          </button>
+          <Link href="/profile" legacyBehavior>
             <a className="button w-75 m-auto mb-2">
               <BsPerson className="icon" />
               User Info
