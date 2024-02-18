@@ -52,9 +52,11 @@ const Login = () => {
                 <div className="col-lg-6">
                   <div className="card-body p-md-5 mx-md-4">
                     <div className="text-center mt-1 mb-5 pb-1">
-                      <img
+                      <Image
                         src="/assets/imgs/logo.jpg"
                         style={{ width: "185px" }}
+                        width={185}
+                        height={185}
                         alt="logo"
                       />
                     </div>
