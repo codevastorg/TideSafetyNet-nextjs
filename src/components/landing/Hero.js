@@ -43,12 +43,8 @@ const HeroSection = () => {
               User Info
             </a>
           </Link>
-          <Link href="./TideSafetyNet.apk" legacyBehavior>
-            <a className="button w-75 m-auto mb-2">
-              <BsDownload className="icon" />
-              Download App
-            </a>
-          </Link>
+
+          {/* Link for downloading app is removed, as the app will be hosted in Play Store, plus this webapp will be rendered directly to the app, so no need for the link. ciao */}
 
           <Link href="#search" className="text-center" legacyBehavior>
             <a className="button w-75 m-auto mb-2">
