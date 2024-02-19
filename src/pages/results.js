@@ -167,7 +167,7 @@ const ResultsPage = () => {
                   <Link
                     className="mb-3 btn btn-outline-secondary btn-lg px-4"
                     style={{ textTransform: "none" }}
-                    href=""
+                    href="https://tide-safety-net-chatbot-gd9liuqsm-warrenshiv.vercel.app"
                   >
                     Seek More Advice
                   </Link>
