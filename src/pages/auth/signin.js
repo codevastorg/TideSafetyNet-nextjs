@@ -91,6 +91,7 @@ const Login = () => {
                         type="text"
                         id="email"
                         name="email"
+                        required
                         className="form-control mb-3"
                         placeholder="example@gmail.com"
                         value={formData.email}
