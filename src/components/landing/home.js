@@ -9,13 +9,10 @@ const Homepage = () => {
       <Navbar />
       <div className="overflow-hidden">
         <div className="container content-space-1 content-space-md-2">
-          <div className="row justify-content-sm-center">
-            <div className="col-lg-6">
+          <div className="row justify-content-center">
+            <div className="col-lg-8 col-md-10 col-sm-12">
               <div className="text-center mb-5">
-                <h1
-                  className="text-secondary display-2"
-                  style={{ fontSize: "3.5rem", fontWeight: 500 }}
-                >
+                <h1 className="text-secondary display-2">
                   Welcome to <br />
                   <span>TideSafetyNet</span>
                 </h1>
@@ -25,10 +22,12 @@ const Homepage = () => {
                   <span className="text-warning">wave information.</span>
                 </h2>
                 <p className="lead">
-                  <strong>We warn fishermen</strong> about high or low tides,
-                  <strong>assist surfers</strong> in identifying the best days to surf,
-                  and <strong>assist swimmers</strong> in identifying safe days
-                  for swimming, effectively<br></br> <strong>reducing the risks of accidents. <br></br></strong>
+                  <strong>We warn fishermen</strong> about high or low tides,{" "}
+                  <strong>assist surfers</strong> in identifying the best days
+                  to surf, and <strong>assist swimmers</strong> in identifying
+                  safe days for swimming, effectively reducing the risks of
+                  accidents.
+                  <br />
                   Our data can also predict an <strong>incoming Tsunami.</strong>{" "}
                 </p>
               </div>
@@ -52,14 +51,16 @@ const Homepage = () => {
           </div>
 
           <div className="position-relative mb-5">
-            <Image
-              src="/assets/imgs/info.webp"
-              alt="Ocean waves indicating high and low tides, assisting fishermen and swimmers"
-              layout="responsive"
-              width={1500}
-              height={200}
-              style={{ borderRadius: "10px" }}
-            />
+            <div className="embed-responsive embed-responsive-16by9">
+              <Image
+                src="/assets/imgs/info.webp"
+                alt="Ocean waves indicating high and low tides, assisting fishermen and swimmers"
+                layout="fill"
+                objectFit="cover"
+                className="embed-responsive-item"
+                style={{ borderRadius: "10px" }}
+              />
+            </div>
           </div>
         </div>
       </div>
