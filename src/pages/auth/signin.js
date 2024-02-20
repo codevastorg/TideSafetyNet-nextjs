@@ -10,6 +10,9 @@ const Login = () => {
     password: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -22,28 +25,35 @@ const Login = () => {
     e.preventDefault();
     const { email, password } = formData;
 
-    const { result, error } = await signIn(email, password);
+    try {
+      const { result, error } = await signIn(email, password);
 
-    if (error) {
-      console.log(error);
-      // Optionally, handle login failure (e.g., showing an error message)
-    } else {
-      console.log(result);
-      Router.push("/dashboard/homepage");
+      if (error) {
+        console.error("Login failed:", error);
+        setErrorMessage("Invalid email or password. Please try again.");
+        setSuccessMessage("");
+      } else {
+        console.log(result);
+        setSuccessMessage("Login successful!");
+        setErrorMessage("");
 
-      // Reset form data after successful login
-      setFormData({
-        email: "",
-        password: "",
-      });
+        Router.push("/dashboard/homepage");
+
+        // Reset form data after successful login
+        setFormData({
+          email: "",
+          password: "",
+        });
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setErrorMessage("Login failed. Please try again.");
+      setSuccessMessage("");
     }
   };
 
   return (
-    <section
-      className="h-100 gradient-form"
-      style={{ backgroundColor: "#eee" }}
-    >
+    <section className="h-100 gradient-form" style={{ backgroundColor: "#eee" }}>
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-xl-10">
@@ -62,6 +72,16 @@ const Login = () => {
                     </div>
 
                     <form onSubmit={handleLogin}>
+                      {errorMessage && (
+                        <div className="alert alert-danger" role="alert">
+                          {errorMessage}
+                        </div>
+                      )}
+                      {successMessage && (
+                        <div className="alert alert-success" role="alert">
+                          {successMessage}
+                        </div>
+                      )}
                       <p>Please login to your account</p>
                       <label className="mb-2">
                         Email Address
@@ -71,6 +91,7 @@ const Login = () => {
                         type="text"
                         id="email"
                         name="email"
+                        required
                         className="form-control mb-3"
                         placeholder="example@gmail.com"
                         value={formData.email}
