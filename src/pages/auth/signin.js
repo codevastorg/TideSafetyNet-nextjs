@@ -12,6 +12,7 @@ const Login = () => {
 
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State to track password visibility
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,6 +20,10 @@ const Login = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   const handleLogin = async (e) => {
@@ -103,15 +108,24 @@ const Login = () => {
                           Password
                           <span className="text-danger mb-9">*</span>
                         </label>
-                        <input
-                          type="password"
-                          name="password"
-                          className="form-control"
-                          value={formData.password}
-                          placeholder="8+ characters required"
-                          onChange={handleChange}
-                          required
-                        />
+                        <div className="input-group">
+                          <input
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            className="form-control"
+                            value={formData.password}
+                            placeholder="8+ characters required"
+                            onChange={handleChange}
+                            required
+                          />
+                          <button
+                            className="btn btn-outline-secondary"
+                            type="button"
+                            onClick={handleTogglePasswordVisibility}
+                          >
+                            <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
+                          </button>
+                        </div>
                       </div>
 
                       <div className="text-center pt-1 mb-5 pb-1">

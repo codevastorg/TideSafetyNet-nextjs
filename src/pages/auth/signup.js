@@ -1,9 +1,9 @@
-import Head from "next/head";
-import { useState } from "react";
+import React, { useState } from "react";
 import Router from "next/router";
 import Image from "next/image";
 import Link from "next/link";
 import signUp from "@/firebase/auth/signup";
+import Head from "next/head"; // Added import for Head
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -16,9 +16,14 @@ const Register = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [warningMessage, setWarningMessage] = useState("");
   const [termsChecked, setTermsChecked] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State to track password visibility
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  const handleTogglePasswordVisibility = () => {
+    setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
   const handleSubmit = async (e) => {
@@ -96,9 +101,11 @@ const Register = () => {
                   <div className="col-lg-6">
                     <div className="card-body p-md-5 mx-md-4">
                       <div className="text-center">
-                        <img
+                        <Image
                           src="/assets/imgs/logo.jpg"
                           style={{ width: "185px" }}
+                          width={185}
+                          height={185}
                           alt="logo"
                         />
                         <h4 className="mt-1 mb-5 pb-1"></h4>
@@ -139,16 +146,25 @@ const Register = () => {
                             Password
                             <span className="text-danger mb-9">*</span>
                           </label>
-                          <input
-                            type="password"
-                            id="password"
-                            required
-                            name="password"
-                            className="form-control"
-                            placeholder="8+ characters required"
-                            value={formData.password}
-                            onChange={handleChange}
-                          />
+                          <div className="input-group">
+                            <input
+                              type={showPassword ? "text" : "password"}
+                              id="password"
+                              required
+                              name="password"
+                              className="form-control"
+                              placeholder="8+ characters required"
+                              value={formData.password}
+                              onChange={handleChange}
+                            />
+                            <button
+                              className="btn btn-outline-secondary"
+                              type="button"
+                              onClick={handleTogglePasswordVisibility}
+                            >
+                              <i className={`fas ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
+                            </button>
+                          </div>
                         </div>
 
                         <div className="mb-4">
