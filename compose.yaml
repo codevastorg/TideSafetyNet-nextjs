@@ -29,7 +29,7 @@ services:
     # define the environment variables
     environment:
       # we're using MongoDB atlas so we need to pass in the connection string
-      FIREBASE_DATABASE_URL:
+      FIREBASE_DATABASE_URL: ${FIREBASE_DATABASE_URL}
     
 volumes:
   tasked:
