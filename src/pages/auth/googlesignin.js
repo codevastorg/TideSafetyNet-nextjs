@@ -27,7 +27,7 @@ const Home = () => {
         const provider = new GoogleAuthProvider();
         try {
             await signInWithPopup(auth, provider);
-            router.push('/dashboard');
+            router.push('/dashboard/homepage');
         } catch (error) {
             console.error("error signing in with Google: ", error);
         }
